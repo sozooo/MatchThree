@@ -9,6 +9,7 @@ namespace Project.Scripts.RedirectionSystem
     {
         [SerializeField] private Button _redirectButton;
         [SerializeField] private SceneID _sceneID;
+        [SerializeField] private Image _loadScreen;
 
         private void OnEnable()
         {
@@ -22,6 +23,7 @@ namespace Project.Scripts.RedirectionSystem
 
         private void Redirect()
         {
+            _loadScreen.gameObject.SetActive(true);
             SceneManager.LoadScene((int)_sceneID);
         }
     }
