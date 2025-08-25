@@ -4,6 +4,5 @@ namespace Project.Scripts.RedirectionSystem.Enums
     {
         MainMenu = 0,
         Game = 1,
-        Loss = 2,
     }
 }
