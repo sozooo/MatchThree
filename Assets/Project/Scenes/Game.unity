@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 715131207}
   - component: {fileID: 715131208}
   m_Layer: 0
-  m_Name: 9-Sliced (3)
+  m_Name: 9-Sliced (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2226,7 +2226,7 @@ GameObject:
   - component: {fileID: 1033993590}
   - component: {fileID: 1033993591}
   m_Layer: 0
-  m_Name: 9-Sliced (1)
+  m_Name: 9-Sliced (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2907,6 +2907,8 @@ MonoBehaviour:
     _prefab: {fileID: 3099327369513144080, guid: 93a5f2b219e0eb349844a51a3a3601f2, type: 3}
     _spawnPoint: {fileID: 1085345283}
     _defaultSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    _dataProvider:
+      _spawnConfig: {fileID: 11400000, guid: 026201d115fd881459f091f6e8125b52, type: 2}
 --- !u!1 &1332813728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3699,6 +3701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1851472217}
+  - component: {fileID: 1851472218}
   m_Layer: 0
   m_Name: Lines
   m_TagString: Untagged
@@ -3724,6 +3727,22 @@ Transform:
   - {fileID: 715131206}
   m_Father: {fileID: 38806404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1851472218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851472216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9a042e16cc4633b00a06fb8ca37107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lines:
+  - {fileID: 715131208}
+  - {fileID: 1033993591}
+  - {fileID: 1878443434}
 --- !u!1 &1878443431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3736,7 +3755,7 @@ GameObject:
   - component: {fileID: 1878443433}
   - component: {fileID: 1878443434}
   m_Layer: 0
-  m_Name: 9-Sliced (2)
+  m_Name: 9-Sliced (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

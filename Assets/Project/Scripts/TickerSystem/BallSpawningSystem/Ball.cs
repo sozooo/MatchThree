@@ -3,6 +3,7 @@ using System.Collections;
 using Project.Scripts.MessageBrokers;
 using Project.Scripts.MessageBrokers.BallMessages;
 using Project.Scripts.SpawnerSystem.Interfaces;
+using Project.Scripts.TickerSystem.BallSpawningSystem.BallDatas;
 using UnityEngine;
 
 namespace Project.Scripts.TickerSystem.BallSpawningSystem
@@ -18,30 +19,35 @@ namespace Project.Scripts.TickerSystem.BallSpawningSystem
         
         public event Action<Ball> OnDespawn;
 
+        public BallColorID ColorID { get; private set; }
+
         private void Awake()
         {
             _transform = transform;
+            _wait = new WaitForSeconds(_timeBeforeDespawn);
         }
 
         public void Despawn()
         {
             OnDespawn?.Invoke(this);
             
-            MessageBrokerHolder.Ball.Publish(new M_BallDespawned(_transform.position));
+            MessageBrokerHolder
+                .Ball
+                .Publish(new M_BallDespawned(_transform.position));
         }
         
         public void Store()
         {
-            if (_timer == null)
+            if (_timer != null)
                 StopCoroutine(_timer);
 
             _timer = null;
         }
 
-        public void Initialize(Sprite sprite)
+        public void Initialize(BallData data)
         {
-            _sprite.sprite = sprite;
-            _wait = new WaitForSeconds(_timeBeforeDespawn);
+            _sprite.sprite = data.Sprite;
+            ColorID = data.ColorID;
 
             _timer = StartCoroutine(DespawnTimer());
         }

@@ -6,8 +6,8 @@ namespace Project.Scripts.Lines
 {
     public class Line : MonoBehaviour
     {
-        public event Action<Ball> OnBallStored;
-        public event Action<Ball> OnBallRelease;
+        public event Action<Line, Ball> OnBallStored;
+        public event Action<Line, Ball> OnBallRelease;
         
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -15,7 +15,8 @@ namespace Project.Scripts.Lines
                 return;
 
             ball.Store();
-            OnBallStored?.Invoke(ball);
+            
+            OnBallStored?.Invoke(this, ball);
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -23,7 +24,7 @@ namespace Project.Scripts.Lines
             if (other.TryGetComponent(out Ball ball) == false)
                 return;
             
-            OnBallRelease?.Invoke(ball);
+            OnBallRelease?.Invoke(this, ball);
         }
     }
 }

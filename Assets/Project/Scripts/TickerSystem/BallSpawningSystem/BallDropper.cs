@@ -1,5 +1,6 @@
 ﻿using System;
 using Project.Scripts.SpawnerSystem;
+using Project.Scripts.TickerSystem.BallSpawningSystem.BallDatas;
 using UnityEngine;
 
 namespace Project.Scripts.TickerSystem.BallSpawningSystem
@@ -9,7 +10,8 @@ namespace Project.Scripts.TickerSystem.BallSpawningSystem
     {
         [SerializeField] private Ball _prefab;
         [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private Sprite _defaultSprite;
+        [SerializeField] private SpriteRenderer _ballPreview;
+        [SerializeField] private BallDataProvider _dataProvider;
 
         private Spawner<Ball> _ballSpawner;
 
@@ -21,8 +23,9 @@ namespace Project.Scripts.TickerSystem.BallSpawningSystem
         public void Drop()
         {
             Ball ball = _ballSpawner.Spawn(_spawnPoint.position);
+            BallData data = _dataProvider.GetRandomData();
             
-            ball.Initialize(_defaultSprite);
+            ball.Initialize(data);
         }
     }
 }
