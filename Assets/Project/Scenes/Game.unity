@@ -2906,7 +2906,7 @@ MonoBehaviour:
   _ballDropper:
     _prefab: {fileID: 3099327369513144080, guid: 93a5f2b219e0eb349844a51a3a3601f2, type: 3}
     _spawnPoint: {fileID: 1085345283}
-    _defaultSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    _ballPreview: {fileID: 1161661032}
     _dataProvider:
       _spawnConfig: {fileID: 11400000, guid: 026201d115fd881459f091f6e8125b52, type: 2}
 --- !u!1 &1332813728
