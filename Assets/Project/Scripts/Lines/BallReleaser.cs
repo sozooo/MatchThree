@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Project.Scripts.MessageBrokers;
 using Project.Scripts.MessageBrokers.BallMessages;
@@ -18,13 +19,16 @@ namespace Project.Scripts.Lines
             _lineComparator = lineComparator;
         }
 
-        public async UniTaskVoid ReleaseBalls()
+        public async UniTask ReleaseBalls(CancellationToken token)
         {
             List<Ball> matchedBalls = _lineComparator.CheckMatches();
 
             foreach (Ball ball in matchedBalls)
             {
-                await UniTask.WaitForSeconds(DespawnDelay);
+                await UniTask.WaitForSeconds(DespawnDelay, cancellationToken: token);
+                
+                if(token.IsCancellationRequested)
+                    return;
                 
                 ball.Despawn();
             }

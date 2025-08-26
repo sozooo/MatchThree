@@ -1,4 +1,6 @@
 using Project.Scripts.RedirectionSystem.Enums;
+using Project.Scripts.UI;
+using Project.Scripts.UI.Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +11,7 @@ namespace Project.Scripts.RedirectionSystem
     {
         [SerializeField] private Button _redirectButton;
         [SerializeField] private SceneID _sceneID;
-        [SerializeField] private Image _loadScreen;
+        [SerializeField] private CanvasManager _canvasManager;
 
         private void OnEnable()
         {
@@ -23,7 +25,8 @@ namespace Project.Scripts.RedirectionSystem
 
         private void Redirect()
         {
-            _loadScreen.gameObject.SetActive(true);
+            _canvasManager.ChangeCanvas(GameCanvasType.Loading);
+            
             SceneManager.LoadScene((int)_sceneID);
         }
     }
