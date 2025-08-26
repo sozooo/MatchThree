@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeTween;
@@ -35,7 +36,7 @@ namespace Project.Scripts.UI
             MessageBrokerHolder
                 .Ball
                 .Receive<M_BallsReleased>()
-                .Subscribe(message => AddScore(message.BallDatas))
+                .Subscribe(message => AddScore(message.Balls.Select(ball => ball.Data).ToList()))
                 .AddTo(_cancellationToken.Token);
         }
         

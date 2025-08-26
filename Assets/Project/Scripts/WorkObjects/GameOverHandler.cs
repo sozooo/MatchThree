@@ -5,12 +5,14 @@ using Project.Scripts.UI;
 using Project.Scripts.UI.Enums;
 using UniRx;
 using UnityEngine;
+using VContainer;
 
 namespace Project.Scripts.WorkObjects
 {
     public class GameOverHandler : MonoBehaviour
     {
         [SerializeField] private CanvasManager _canvasManager;
+        [Inject] private PlayerInput _playerInput;
 
         private CancellationTokenSource _cancellationToken;
         
@@ -31,6 +33,12 @@ namespace Project.Scripts.WorkObjects
             _cancellationToken?.Cancel();
         }
 
-        private void OnGameOver() => _canvasManager.ChangeCanvas(GameCanvasType.GameOver);
+        private void OnGameOver()
+        {
+            _canvasManager.ChangeCanvas(GameCanvasType.GameOver);
+            
+            Time.timeScale = 0;
+            _playerInput.Disable();
+        }
     }
 }

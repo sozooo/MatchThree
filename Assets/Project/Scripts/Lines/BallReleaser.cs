@@ -35,7 +35,7 @@ namespace Project.Scripts.Lines
             
             MessageBrokerHolder
                 .Ball
-                .Publish(new M_BallsReleased(matchedBalls.Select(ball => ball.Data).ToList()));
+                .Publish(new M_BallsReleased(matchedBalls));
         }
     }
 }

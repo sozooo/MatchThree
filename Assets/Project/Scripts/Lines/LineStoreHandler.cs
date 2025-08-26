@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Project.Scripts.MessageBrokers;
+using Project.Scripts.MessageBrokers.BallMessages;
 using Project.Scripts.TickerSystem.BallSpawningSystem;
+using UniRx;
 using UnityEngine;
 
 namespace Project.Scripts.Lines
@@ -32,11 +34,19 @@ namespace Project.Scripts.Lines
 
         private void OnEnable()
         {
+            _cancellationToken?.Cancel();
+            _cancellationToken = new CancellationTokenSource();
+            
             foreach (Line line in _lines)
             {
                 line.OnBallStored += StoreBall;
-                line.OnBallRelease += ReleaseBall;
             }
+
+            MessageBrokerHolder
+                .Ball
+                .Receive<M_BallsReleased>()
+                .Subscribe(OnBallsReleased)
+                .AddTo(_cancellationToken.Token);
         }
 
         private void OnDisable()
@@ -46,41 +56,33 @@ namespace Project.Scripts.Lines
             foreach (Line line in _lines)
             {
                 line.OnBallStored -= StoreBall;
-                line.OnBallRelease -= ReleaseBall;
             }
         }
 
         private void StoreBall(Line line, Ball ball)
         {
-            (int line, int index) ballIndex = FindBallIndex(line, null);
+            (int line, int index) ballIndex = FindBallIndex(_lines.IndexOf(line), null);
 
-            if(_ballsGrid[ballIndex.line, ballIndex.index] != null)
+            if(_ballsGrid[ballIndex.line, ballIndex.index] == true)
                 return;
                 
             _ballsGrid[ballIndex.line, ballIndex.index] = ball;
 
-            ReleaseBall();
+            ReleasingBalls(_cancellationToken.Token).Forget();
         }
 
-        private void ReleaseBall(Line line, Ball ball)
+        private void OnBallsReleased(M_BallsReleased message)
         {
-            (int line, int index) ballIndex = FindBallIndex(line, ball);
+            for (int i = 0; i < _ballsGrid.GetLength(HorizontalDimension); i++)
+                for (int j = 0; j < _ballsGrid.GetLength(VerticalDimension); j++)
+                    if (message.Balls.Contains(_ballsGrid[i, j]))
+                        _ballsGrid[i, j] = null;
 
-            if(_ballsGrid[ballIndex.line, ballIndex.index] != ball)
-                return;
-
-            for (int column = ballIndex.index; column < _ballsGrid.GetLength(VerticalDimension) - 1; column++)
-                _ballsGrid[ballIndex.line, column] = _ballsGrid[ballIndex.line, column + 1];
-
-            _ballsGrid[ballIndex.line, _ballsGrid.GetLength(VerticalDimension) - 1] = null;
-            
-            ReleaseBall();
+            RelocateBalls();
         }
 
-        private (int, int) FindBallIndex(Line line, Ball ball)
+        private (int, int) FindBallIndex(int lineIndex, Ball ball)
         {
-            int lineIndex = _lines.IndexOf(line);
-            
             var ballPosition = Enumerable
                 .Range(StartPosition, _ballsGrid.GetLength(VerticalDimension))
                 .FirstOrDefault(position => _ballsGrid[lineIndex, position] == ball);
@@ -90,27 +92,30 @@ namespace Project.Scripts.Lines
 
         private void RelocateBalls()
         {
+            for (int line = 0; line < _ballsGrid.GetLength(HorizontalDimension); line++)
+            {
+                (int line, int index) ballIndex = FindBallIndex(line, null);
             
-        }
-
-        private void ReleaseBall()
-        {
-            _cancellationToken?.Cancel();
-            _cancellationToken = new CancellationTokenSource();
+                if (_ballsGrid[ballIndex.line, ballIndex.index] == true)
+                    return;
             
-            ReleasingBalls(_cancellationToken.Token).Forget();
+                for (int column = ballIndex.index; column < _ballsGrid.GetLength(VerticalDimension) - 1; column++)
+                    _ballsGrid[ballIndex.line, column] = _ballsGrid[ballIndex.line, column + 1];
+                
+                _ballsGrid[ballIndex.line, _ballsGrid.GetLength(VerticalDimension) - 1] = null;
+            }
         }
         
         private async UniTaskVoid ReleasingBalls(CancellationToken token)
         {
             await _ballReleaser.ReleaseBalls(token);
             
-            if(token.IsCancellationRequested)
+            if (token.IsCancellationRequested)
                 return;
             
             for (int i = 0; i < _ballsGrid.GetLength(HorizontalDimension); i++)
                 for (int j = 0; j < _ballsGrid.GetLength(VerticalDimension); j++)
-                    if (_ballsGrid[i, j] == null)
+                    if (_ballsGrid[i, j] == false)
                         return;
             
             MessageBrokerHolder
