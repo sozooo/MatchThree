@@ -1186,6 +1186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 474013787}
   - component: {fileID: 474013786}
+  - component: {fileID: 474013788}
   m_Layer: 0
   m_Name: Scopes
   m_TagString: Untagged
@@ -1225,6 +1226,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &474013788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474013785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8822b6810546fb9e37ea4e65e38e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects: []
+  _explosionEffect: {fileID: 8497055857086770243, guid: ad9a3df1e5edbf64f86d3af50058a440, type: 3}
 --- !u!1 &588716455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,6 +1474,7 @@ GameObject:
   - component: {fileID: 751338564}
   - component: {fileID: 751338566}
   - component: {fileID: 751338565}
+  - component: {fileID: 751338567}
   m_Layer: 0
   m_Name: ScoreCount
   m_TagString: Untagged
@@ -1579,6 +1598,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751338563}
   m_CullTransparentMesh: 1
+--- !u!114 &751338567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751338563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7246999ec13149c8bf86faea685427bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreText: {fileID: 751338565}
+  _duration: 0.1
 --- !u!1 &790492467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,6 +1773,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1087562470}
   - {fileID: 2033582690}
   - {fileID: 1109851920}
   - {fileID: 1454465488}
@@ -2365,7 +2399,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2033582690}
+  m_Father: {fileID: 892605236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3864,7 +3898,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 751338564}
-  - {fileID: 1087562470}
   m_Father: {fileID: 892605236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

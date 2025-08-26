@@ -8,5 +8,6 @@ namespace Project.Scripts.TickerSystem.BallSpawningSystem.BallDatas
     {
         [field: SerializeField] public BallColorID ColorID { get; private set; }
         [field: SerializeField] public Sprite Sprite { get; private set; }
+        [field: SerializeField] public float Score { get; private set; }
     }
 }

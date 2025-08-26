@@ -19,7 +19,7 @@ namespace Project.Scripts.TickerSystem.BallSpawningSystem
         
         public event Action<Ball> OnDespawn;
 
-        public BallColorID ColorID { get; private set; }
+        public BallData Data { get; private set; }
 
         private void Awake()
         {
@@ -46,8 +46,8 @@ namespace Project.Scripts.TickerSystem.BallSpawningSystem
 
         public void Initialize(BallData data)
         {
-            _sprite.sprite = data.Sprite;
-            ColorID = data.ColorID;
+            Data = data;
+            _sprite.sprite = Data.Sprite;
 
             _timer = StartCoroutine(DespawnTimer());
         }

@@ -71,7 +71,7 @@ namespace Project.Scripts.Lines
                 {
                     var cell = _balls[line[i].x, line[i].y];
 
-                    if (cell != null && cell.ColorID == first.ColorID) 
+                    if (cell != null && cell.Data.ColorID == first.Data.ColorID) 
                         continue;
                     
                     allSame = false;

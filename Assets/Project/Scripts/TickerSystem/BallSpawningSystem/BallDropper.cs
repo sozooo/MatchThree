@@ -14,18 +14,28 @@ namespace Project.Scripts.TickerSystem.BallSpawningSystem
         [SerializeField] private BallDataProvider _dataProvider;
 
         private Spawner<Ball> _ballSpawner;
+        
+        private BallData _currentBallData;
 
         public void Initialize()
         {
             _ballSpawner = new Spawner<Ball>(_prefab);
+
+            UpdatePreview();
         }
 
         public void Drop()
         {
             Ball ball = _ballSpawner.Spawn(_spawnPoint.position);
-            BallData data = _dataProvider.GetRandomData();
-            
-            ball.Initialize(data);
+            ball.Initialize(_currentBallData);
+
+            UpdatePreview();
+        }
+
+        private void UpdatePreview()
+        {
+            _currentBallData = _dataProvider.GetRandomData();
+            _ballPreview.sprite = _currentBallData.Sprite;
         }
     }
 }

@@ -194,4 +194,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 7287808972986596317}
-  _timeBeforeDespawn: 10
+  _timeBeforeDespawn: 7

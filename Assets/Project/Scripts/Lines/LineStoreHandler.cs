@@ -52,7 +52,7 @@ namespace Project.Scripts.Lines
                 
             _ballsGrid[ballIndex.line, ballIndex.index] = ball;
             
-            _ballReleaser.ReleaseBalls();
+            _ballReleaser.ReleaseBalls().Forget();
         }
 
         private void ReleaseBall(Line line, Ball ball)
@@ -67,7 +67,7 @@ namespace Project.Scripts.Lines
 
             _ballsGrid[ballIndex.line, _ballsGrid.GetLength(VerticalDimension) - 1] = null;
             
-            _ballReleaser.ReleaseBalls();
+            _ballReleaser.ReleaseBalls().Forget();
         }
 
         private (int, int) FindBallIndex(Line line, Ball ball)
