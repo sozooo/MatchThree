@@ -18,9 +18,10 @@ namespace Project.Scripts.UI
         [SerializeField] private float _duration = 0.1f;
 
         private float _currentScore;
-        private float _targetScore;
         private CancellationTokenSource _cancellationToken;
         private Tween _lerpTween;
+
+        public float TargetScore { get; private set; }
 
         private void Awake()
         {
@@ -43,6 +44,9 @@ namespace Project.Scripts.UI
         private void OnDisable()
         {
             _cancellationToken?.Cancel();
+            
+            if(_lerpTween.isAlive)
+                _lerpTween.Stop();
         }
         
         private void AddScore(List<BallData> balls)
@@ -51,7 +55,7 @@ namespace Project.Scripts.UI
             
             balls.ForEach(ball => score += ball.Score);
             
-            _targetScore += score;
+            TargetScore += score;
             
             UpdateScoreText();
         }
@@ -64,7 +68,7 @@ namespace Project.Scripts.UI
             _lerpTween = Tween.Custom(
                 _scoreText, 
                 _currentScore, 
-                _targetScore, 
+                TargetScore, 
                 _duration,
                 (text, value) =>
                 {

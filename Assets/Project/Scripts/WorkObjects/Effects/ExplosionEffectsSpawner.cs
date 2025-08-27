@@ -5,9 +5,10 @@ using Project.Scripts.MessageBrokers;
 using Project.Scripts.MessageBrokers.BallMessages;
 using Project.Scripts.SpawnerSystem;
 using UniRx;
+using UnityEngine;
 using VContainer.Unity;
 
-namespace Project.Scripts.Scopes
+namespace Project.Scripts.WorkObjects.Effects
 {
     public class ExplosionEffectsSpawner : Spawner<Effect>, IInitializable, IDisposable
     {

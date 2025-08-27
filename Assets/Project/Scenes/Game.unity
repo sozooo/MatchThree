@@ -264,8 +264,9 @@ GameObject:
   - component: {fileID: 1298097}
   - component: {fileID: 1298099}
   - component: {fileID: 1298098}
+  - component: {fileID: 1298100}
   m_Layer: 0
-  m_Name: ScoreCount
+  m_Name: End ScoreCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,6 +388,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298096}
   m_CullTransparentMesh: 1
+--- !u!114 &1298100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1a832f9e5b43afa2de64d8ed0b32e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1298098}
+  _scoreCounter: {fileID: 751338567}
 --- !u!1 &38806403
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,9 +909,9 @@ RectTransform:
   - {fileID: 1030260780}
   m_Father: {fileID: 1737237114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 140.5, y: -50}
   m_SizeDelta: {x: 160, y: 87.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215074143
@@ -1249,13 +1264,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 474013785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8822b6810546fb9e37ea4e65e38e28, type: 3}
+  m_Script: {fileID: 11500000, guid: bd3fddf591ed42a3932b71466f097d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentReference:
-    TypeName: 
-  autoRun: 1
-  autoInjectGameObjects: []
   _explosionEffect: {fileID: 8497055857086770243, guid: ad9a3df1e5edbf64f86d3af50058a440, type: 3}
 --- !u!1 &588716455
 GameObject:
@@ -1929,9 +1940,9 @@ RectTransform:
   - {fileID: 1546454012}
   m_Father: {fileID: 1737237114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 329.5, y: -50}
   m_SizeDelta: {x: 160, y: 87.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &914622133
@@ -2568,7 +2579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1109851920
 RectTransform:
   m_ObjectHideFlags: 0

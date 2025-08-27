@@ -13,20 +13,21 @@ namespace Project.Scripts.TickerSystem
 
         private void Awake()
         {
-            _rotator.Start();
             _ballDropper.Initialize();
         }
 
         private void OnEnable()
         {
-            _playerInput.Pointer.Enable();
+            _playerInput.Enable();
+            _rotator.Start();
 
             _playerInput.Pointer.Click.performed += HandleClick;
         }
 
         private void OnDisable()
         {
-            _playerInput.Pointer.Disable();
+            _playerInput.Disable();
+            _rotator.Stop();
 
             _playerInput.Pointer.Click.performed -= HandleClick;
         }

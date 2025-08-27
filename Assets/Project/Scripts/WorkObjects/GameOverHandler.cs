@@ -18,6 +18,8 @@ namespace Project.Scripts.WorkObjects
         
         private void OnEnable()
         {
+            Time.timeScale = 1;
+            
             _cancellationToken?.Cancel();
             _cancellationToken = new CancellationTokenSource();
 

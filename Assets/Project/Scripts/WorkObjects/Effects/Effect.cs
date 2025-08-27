@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Project.Scripts.SpawnerSystem.Interfaces;
 using UnityEngine;
 
-namespace Project.Scripts.Scopes
+namespace Project.Scripts.WorkObjects.Effects
 {
     public class Effect : MonoBehaviour, IDespawnable<Effect>
     {
