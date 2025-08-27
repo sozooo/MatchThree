@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Project.Scripts.TickerSystem.BallSpawningSystem;
-using Project.Scripts.TickerSystem.BallSpawningSystem.BallDatas;
 
 namespace Project.Scripts.MessageBrokers.BallMessages
 {

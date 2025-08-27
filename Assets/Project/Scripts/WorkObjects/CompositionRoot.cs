@@ -1,5 +1,4 @@
-﻿using Project.Scripts.Scopes;
-using Project.Scripts.WorkObjects.Effects;
+﻿using Project.Scripts.WorkObjects.Effects;
 using UnityEngine;
 
 namespace Project.Scripts.WorkObjects
